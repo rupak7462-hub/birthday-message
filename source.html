@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 Happy Birthday 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      text-align: center;
+      color: #fff;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-top: 20px;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 14px 30px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      background-color: #fff;
+      color: #ff4081;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #ffe3ec;
+    }
+
+    .message {
+      display: none;
+    }
+
+    .typewriter-text {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid white;
+      animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 20px;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: white; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="welcome">
+      <h1>Hello 🎈</h1>
+      <p>Click the button to reveal something beautiful ✨</p>
+      <button class="btn" onclick="showMessage()">Click Me</button>
+    </div>
+
+    <div id="message" class="message">
+      <h1>🎉 Happy Birthday! 🎉</h1>
+      <p class="typewriter-text" id="typeText"></p>
+      <p>🎂 Enjoy your special day to the fullest! 🎁</p>
+    </div>
+  </div>
+
+  <!-- Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" preload="auto"></audio>
+
+  <!-- Script -->
+  <script>
+    const message = "Today is a special day for someone truly amazing. You deserve the world. Wishing you all the happiness and success. 💖";
+
+    function showMessage() {
+      document.getElementById("welcome").style.display = "none";
+      document.getElementById("message").style.display = "block";
+
+      // Play background music
+      const music = document.getElementById("bgMusic");
+      music.play();
+
+      // Launch confetti
+      confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.6 }
+      });
+
+      // Start typing animation
+      const textTarget = document.getElementById("typeText");
+      let i = 0;
+
+      function typeWriter() {
+        if (i < message.length) {
+          textTarget.innerHTML += message.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      }
+
+      typeWriter();
+    }
+  </script>
+
+</body>
+</html>
